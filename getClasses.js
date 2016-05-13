@@ -19,7 +19,7 @@
 //http://catalog.emich.edu/content.php?catoid=20&catoid=20&navoid=4199&filter%5Bitem_type%5D=3&filter%5Bonly_active%5D=1&filter%5B3%5D=1&filter%5Bcpage%5D=             7              #acalog_template_course_filter
 
 
-
+//TODO
 var DownloadDirectory = '';
 
 
@@ -37,20 +37,24 @@ function expandAnchors() {
 	}
 }
 
-function embedDownload() {
-	(function(){
-
-    document.location = 'data:text/attachment;,' 
-    	+ document.documentElement.innerHTML; //To Download Entire Html Source
-	})();
-
-	// Or use derivative of this 
+function download() {
+	var htmlString; 
+    htmlString.push('data:text/attachment;,' + document.documentElement.innerHTML); //To Download Entire Html Source
+    return htmlString;
+	// Or use derivative of this TODO
 	// <a onclick="this.href='data:text/html;charset=UTF-8,'+encodeURIComponent(document.documentElement.outerHTML)" href="#" download="page.html">Download</a>
 } 
 
-function main() {
-	expandAnchors();
+function iteratePages() {
+	for (i=1; i<=50; i++) {
+		window.location.href = 'http://catalog.emich.edu/content.php?catoid=20&catoid=20&navoid=4199&filter%5Bitem_type%5D=3&filter%5Bonly_active%5D=1&filter%5B3%5D=1&filter%5Bcpage%5D='+i+'#acalog_template_course_filter';
+		expandAnchors();
+		download()
+	}
+}
 
+function main() {
+	iteratePages() 
 }
 
 
@@ -59,5 +63,4 @@ function main() {
 
 
 
-http://catalog.emich.edu/content.php?catoid=20&catoid=20&navoid=4199&filter%5Bitem_type%5D=3&filter%5Bonly_active%5D=1&filter%5B3%5D=1&filter%5Bcpage%5D=10#acalog_template_course_filter
 
