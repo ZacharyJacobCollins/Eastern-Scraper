@@ -1,3 +1,5 @@
+
+
 // Sample table column
 // <tr>
 // 		<td width="15">&nbsp;&nbsp;</td>
@@ -13,13 +15,15 @@
 // Then we want to iterate through that array and grab the td's and store them in an array.  
 // Then finally we iterate through the list of td's and find the a tags, which we then 'click'.
 
-
-
-
-
 // location.href = "http://www.example.com/test";
 //http://catalog.emich.edu/content.php?catoid=20&catoid=20&navoid=4199&filter%5Bitem_type%5D=3&filter%5Bonly_active%5D=1&filter%5B3%5D=1&filter%5Bcpage%5D=             7              #acalog_template_course_filter
 
+
+
+var DownloadDirectory = '';
+
+
+//Expands all class info tags
 function expandAnchors() {
 	// the sixth table in is the one that we want
 	var table1 = document.querySelectorAll("table")[6];
@@ -31,7 +35,23 @@ function expandAnchors() {
 	for (i=1; i++; i<trList.length-2) {
 		trList[i].querySelectorAll('a')[0].click(); 
 	}
+}
+
+function embedDownload() {
+	(function(){
+
+    document.location = 'data:text/attachment;,' 
+    	+ document.documentElement.innerHTML; //To Download Entire Html Source
+	})();
+
+	// Or use derivative of this 
+	// <a onclick="this.href='data:text/html;charset=UTF-8,'+encodeURIComponent(document.documentElement.outerHTML)" href="#" download="page.html">Download</a>
 } 
+
+function main() {
+	expandAnchors();
+
+}
 
 
 
@@ -41,8 +61,3 @@ function expandAnchors() {
 
 http://catalog.emich.edu/content.php?catoid=20&catoid=20&navoid=4199&filter%5Bitem_type%5D=3&filter%5Bonly_active%5D=1&filter%5B3%5D=1&filter%5Bcpage%5D=10#acalog_template_course_filter
 
-//use this for onclicks
-// var elem = document.getElementById("linkid");
-// if (typeof elem.onclick == "function") {
-//     elem.onclick.apply(elem);
-// }
